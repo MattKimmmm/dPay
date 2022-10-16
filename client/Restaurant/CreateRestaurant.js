@@ -20,9 +20,20 @@ import postRestaurantAPI from "../API/postRestaurant.js";
 //   Payment     Payment[]
 
 
-export default function createRestaurant({user}){
+export default function createRestaurant({user, setPageID}) {
     const [name,setName] = useState("");
     const [address,setAddress] = useState("");
+    createRestaurant = () => {
+        const restaurant = {
+            name:name,
+            address:address,
+            ownerId:user.id
+        }
+        postRestaurantAPI(restaurant).then((response) => {
+            alert(response)
+            setPageID("home");
+        })
+    }
     return(
         <View style={styles.container}>
             <Text style={styles.text}>Create Restaurant</Text>

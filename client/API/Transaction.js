@@ -1,6 +1,8 @@
+import sampleTransactions from '../SampleTransactions.js'
 const getTransactions = async (id) => {
-    
+    retur
     var urlg = "http://localhost:3000/transactiong";
+    console.log("hello world")
 
     var response = await fetch(urlg, {
         method: "POST",

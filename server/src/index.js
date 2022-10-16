@@ -96,7 +96,6 @@ app.post("/transactionc", cors(), async (req, res) => {
   for (var i = 0; i < selectedPeople.length; i++) {
     selectedPeopleId.push({ id: selectedPeople[i].id });
   }
-  console.log("hello", selectedPeopleId);
 
   try {
     const transaction = await prisma.transaction.create({
