@@ -11,9 +11,7 @@ const getTransactions = async (amount, isCompleted, people) => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            amount: amount,
-            isCompleted: isCompleted,
-            people: people,
+            id : id
         }),
     });
 
