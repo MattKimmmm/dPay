@@ -14,7 +14,6 @@ model User {
   password      String
   deviceId      String
   balance       Float         @default(0)
-  transactionId String?
   friends       Friend?
   shop          Restaurant[]
   transaction   Transaction[]
@@ -45,7 +44,7 @@ model Transaction {
   amount         Float
   remainder      Float      @default(0)
   isCompleted    Boolean
-  name           Restaurant @relation(fields: [restaurantName], references: [name])
+  restaurant     Restaurant @relation(fields: [restaurantName], references: [name])
   restaurantName String
   people         User[]
 }

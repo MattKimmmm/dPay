@@ -15,7 +15,7 @@ const Registration = async (username, password, email, deviceId) => {
       password: password,
       email: email,
       deviceId: randomString,
-      // deviceID: deviceID
+      
     }),
   });
   var data = await response.json();
