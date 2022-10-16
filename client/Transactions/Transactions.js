@@ -4,7 +4,11 @@ import styles from "./StyleSheet.js";
 import { getUsers } from "../API/User.js";
 import Display from "../Display/Display.js";
 
-export function SmallTransactions({ transaction, setPageID, setCurrentTransaction }) {
+export function SmallTransactions({
+  transaction,
+  setPageID,
+  setCurrentTransaction,
+}) {
   // const[user,setUser] = React.useState(transactions.user);
 
   const transactionClick = () => {
@@ -13,19 +17,19 @@ export function SmallTransactions({ transaction, setPageID, setCurrentTransactio
   };
 
   return (
-
-    <View onclick={() => transactionClick()}
+    <View
+      onclick={() => transactionClick()}
       style={
         transaction.isCompleted
           ? styles.small.Transaction
           : styles.small.Transaction_uncompleted
       }
-      
     >
       <Text style={styles.small.name}>{transaction.id}</Text>
       <Text style={styles.small.TransactionText}>${transaction.amount}</Text>
       <View style={styles.small.TransactionPeoples}>
-        {transaction.people.map((user, index) => {
+        {transaction.people ==undefined ? null :
+          transaction.people.map((user, index) => {
           return (
             <Display key={index} username={user.username} userID={user.id} />
           );
@@ -47,11 +51,17 @@ export function Transaction({ transaction, setPageID }) {
       <Text style={styles.small.name}>{transaction.name}</Text>
       <Text style={styles.small.TransactionText}>${transaction.amount}</Text>
       <View style={styles.small.TransactionPeoples}>
-        {transaction.peoples.map((user, index) => {
-          return (
-            <Display key={index} username={user.username} userID={user.id} />
-          );
-        })}
+        {transaction.people == undefined
+          ? null
+          : transaction.people.map((user, index) => {
+              return (
+                <Display
+                  key={index}
+                  username={user.username}
+                  userID={user.id}
+                />
+              );
+            })}
       </View>
     </View>
   );

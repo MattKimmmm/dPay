@@ -64,7 +64,7 @@ export default function Home({
             <Text style={styles.transaction_prompt}>Transactions</Text>
 
             <ScrollView style={styles.transaction_container2}>
-              {transactions.length == 0 ? (
+              {transactions.length == 0 && transactions==undefined ? (
                 <View style={styles.empty}>
                   <Text style={styles.empty.text}>empty</Text>
                 </View>
