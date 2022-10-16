@@ -11,6 +11,7 @@ export default function App() {
   //create a state to store user id
   const [user, setUser] = useState(null);
   const [transactions,setTransactions] = useState([]);
+  const [currentTransaction,setCurrentTransaction] = useState(null);
   const [pageID, setPageID] = useState("login");
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -30,6 +31,8 @@ export default function App() {
       );
     case "home":
       return <Home user={user} setUser={setUser} setPageID={setPageID} transactions={transactions} setTransactions={setTransactions}/>
+    case "transaction":
+      return <Transaction transaction={currentTransaction} setPageID={setPageID} setTransactions={setTransactions} transactions={transactions}/>
     default:
       return <Login setUser={setUser} setPageID={setPageID} />;
   }

@@ -4,6 +4,10 @@ const sampleShops = [
     id: 'sampleShop',
     ownerId:"19",
     location:"St. Louis",
+    user:{
+        id:"19",
+        username:"clementine",
+        }
     },
     {
     name: 'U-City-Grill',
