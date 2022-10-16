@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     padding:10
   },
   text: {
-    fontSize: "15px",
+    fontSize: 15,
     color: "white",
     textAlign: "center",
   },

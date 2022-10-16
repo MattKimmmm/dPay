@@ -23,19 +23,19 @@ export default function Pay({
   const [peoples, setPeoples] = useState([])
   const [selectedPeople, setSelectedPeople] = useState([user]);
   const goBack = () => {
-    setShop(null);
     setPageID("home");
   };
   const pay = () => {
     //create transaction object with amount, isCompleted false, name, restaurant, people
     createTransactions(amount, false, shop, selectedPeople);
+    setPageID("home");
   };
   useEffect(() => {
     Nearme().then((users) =>{
         setPeoples(users);
     })
     console.log(selectedPeople);
-    }, []);
+    },[]);
   const addToSelected = (user) =>{
     console.log(user);
     setSelectedPeople([...selectedPeople, user]);                               
