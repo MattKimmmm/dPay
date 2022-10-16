@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import Registration from "./Registration/Registration.js";
 import Home from "./Home/Home.js";
 import Settings from "./Settings/Settings.js";
+import { Transaction } from "./Transactions/Transactions.js";
 import Pay from "./Pay/Pay.js";
 
 export default function App() {

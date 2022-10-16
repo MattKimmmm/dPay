@@ -33,7 +33,6 @@ export default function Home({
     console.log("hello", transactions);
   }, [transactions]);
 
-
  
 
   if (user != null) {
