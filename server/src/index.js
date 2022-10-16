@@ -26,12 +26,13 @@ app.use(
   })
 );
 app.post("/registration", cors(), async (req, res) => {
-  const { username, password, email } = req.body;
+  const { username, password, email, deviceId } = req.body;
   const user = await prisma.user.create({
     data: {
       username: username,
       password: password,
       email: email,
+      deviceId: deviceId,
       // deviceID: deviceID
     },
   });

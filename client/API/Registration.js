@@ -1,26 +1,26 @@
-const Registration = async (username, password, email, deviceID) => {
-    
-    var url = "http://localhost:3000/registration";
-    var response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            username: username,
-            password: password,
-            email: email,
-            // deviceID: deviceID
-        })
-    });
-    console.log(response)
-    response.then((response) => {
-        console.log(response);
-    });
-    console.log(response)
+const Registration = async (username, password, email, deviceId) => {
+  var url = "http://localhost:3000/registration";
+  var response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: username,
+      password: password,
+      email: email,
+      deviceId: "hello",
+      // deviceID: deviceID
+    }),
+  });
+  console.log(response);
+  response.then((response) => {
+    console.log(response);
+  });
+  console.log(response);
 
-    return response.json();
-}
+  return response.json();
+};
 
-export {Registration};
+export { Registration };
