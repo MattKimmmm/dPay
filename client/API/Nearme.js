@@ -1,3 +1,5 @@
-export default function nearme(userId){
-    return "hello"
+import sampleUsers from "../sampleUser.js"
+
+export default async function Nearme(location){
+    return sampleUsers
 }
