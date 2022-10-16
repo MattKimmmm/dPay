@@ -28,13 +28,14 @@ export default function Pay({
   const pay = () => {
     //create transaction object with amount, isCompleted false, name, restaurant, people
     createTransactions(amount, false, shop, selectedPeople);
+    setPageID("home");
   };
   useEffect(() => {
     Nearme().then((users) =>{
         setPeoples(users);
     })
     console.log(selectedPeople);
-    }, []);
+    },[]);
   const addToSelected = (user) =>{
     console.log(user);
     setSelectedPeople([...selectedPeople, user]);                               

@@ -1,7 +1,6 @@
 const getTransactions = async (id) => {
     
-    var urlg = "http://localhost:3000/transactiong";
-    var urlvc = "http://localhost:3000/transactiong";
+    var url = "http://localhost:3000/transaction";
 
     var response = await fetch(url, {
         method: "POST",

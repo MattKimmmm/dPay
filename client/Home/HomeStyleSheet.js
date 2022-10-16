@@ -4,6 +4,8 @@ import colors from "../ThemeColor.js";
 
 const styles = StyleSheet.create({
   container: {
+    position: "relative",
+    zIndex:1,
     margin: 20,
     display: "flex",
     alignItems: "center",
@@ -30,6 +32,17 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
+    alignItems: "center",
+    height:"100%",
+    
+  },
+  notification_button: {
+    color:"black",
+    fontSize: 15,
+  },
+  notification_button_alarm: {
+    color: "#eb4034",
+    fontSize:15
   },
   username_container: {
     flex: 1,
@@ -55,11 +68,10 @@ const styles = StyleSheet.create({
     height: "30%",
     alignItems: "center",
     justifyContent: "center",
-
   },
   balance: {
     fontSize: 50,
-    width:"fit-content",
+    width: "fit-content",
   },
   transaction_container1: {
     marginTop: 20,
@@ -83,7 +95,6 @@ const styles = StyleSheet.create({
     borderLeftColor: "transparent",
     borderRightColor: "transparent",
     height: 200,
-    
   },
   empty: {
     display: "flex",
@@ -97,12 +108,12 @@ const styles = StyleSheet.create({
       color: "grey",
     },
   },
-  shops_container:{
-      display:"flex",
-      flexDirection:"row",
-      height:300,
-      width:"100%"
-    }
+  shops_container: {
+    display: "flex",
+    flexDirection: "row",
+    height: 300,
+    width: "100%",
+  },
 });
 
 export default styles;
