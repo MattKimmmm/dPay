@@ -78,6 +78,13 @@ export default function App() {
             transactions={transactions}
           />
         );
+    case "settings":
+      return (
+        <Settings
+          user={user}
+          setPageID={setPageID}
+          />
+      )
 
     default:
       return <Login setUser={setUser} setPageID={setPageID} />;
