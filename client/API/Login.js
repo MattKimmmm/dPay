@@ -19,7 +19,7 @@ const Login = async (username, password) => {
     return null
   }
   console.log(data);
-  return response;
+  return data;
 }
 
 export {Login};

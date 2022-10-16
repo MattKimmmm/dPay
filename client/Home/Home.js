@@ -94,7 +94,7 @@ export default function Home({
               )}
             </ScrollView>
           </View>
-          <ScrollView style={styles.shops.container}>
+          {/* <ScrollView style={styles.shops.container}>
                 {shops.map((shop) => (
                   <Shops
                     key={shop.id}
@@ -102,7 +102,7 @@ export default function Home({
                     setPageID={setPageID}
                   ></Shops>
                 ))}
-          </ScrollView>
+          </ScrollView> */}
         </View>
       </View>
     );
