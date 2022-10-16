@@ -5,7 +5,7 @@ import styles from "./StyleSheet.js";
 export default function Shops({ shop, setPageID }) {
     return (
         <View style={styles.container}>
-        <Text style={styles.text}>Shops</Text>
+            <Text style={styles.text}>Shops</Text>
         </View>
     );
 }

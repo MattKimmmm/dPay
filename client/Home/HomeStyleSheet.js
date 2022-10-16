@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
   shops:{
     container:{
       display:"flex",
+      flexDirection:"row",
     }
   }
 });
