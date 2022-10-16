@@ -5,6 +5,7 @@ CREATE TABLE `User` (
     `email` VARCHAR(191) NOT NULL,
     `password` VARCHAR(191) NOT NULL,
     `deviceId` VARCHAR(191) NOT NULL,
+    `balance` DOUBLE NOT NULL DEFAULT 0,
     `transactionId` VARCHAR(191) NULL,
 
     UNIQUE INDEX `User_username_key`(`username`),
