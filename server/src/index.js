@@ -1,12 +1,25 @@
 import express from 'express'
 import { PrismaClient } from '@prisma/client'
+import cors from "cors"
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const app = express();
 const prisma = new PrismaClient()
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors());
+app.use(
+  "",
+  createProxyMiddleware({
+    target: "http://localhost:16009/", //original url
+    changeOrigin: true,
+    //secure: false,
+    onProxyRes: function (proxyRes, req, res) {
+      proxyRes.headers["Access-Control-Allow-Origin"] = "*";
+    },
+  })
+);
 app.post('/registration', async (req, res) => {
     
     const { username, password, email } = req.body;

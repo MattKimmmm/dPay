@@ -1,8 +1,7 @@
 
 const Registration = async (username, password, email, deviceID) => {
-
-    var url = "http://localhost:3000/registration";
     
+    var url = "http://localhost:3000/registration";
     var response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -19,8 +18,9 @@ const Registration = async (username, password, email, deviceID) => {
     response.then((response) => {
         console.log(response);
     });
+    console.log(response)
 
     return response.json();
 }
 
-export default Registration;
+export  {Registration};
