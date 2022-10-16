@@ -28,18 +28,21 @@ model Friend {
 }
 
 model Restaurant {
-  id       String @id @default(uuid())
-  name     String
-  location String
-  ownerId  String
-  owner    User   @relation(fields: [ownerId], references: [id])
+  id          String        @id @default(uuid())
+  name        String        @unique
+  location    String        @unique
+  ownerId     String
+  owner       User          @relation(fields: [ownerId], references: [id])
+  Transaction Transaction[]
 
   @@index([ownerId], map: "Restaurant_ownerId_fkey")
 }
 
 model Transaction {
-  id          String  @id @default(uuid())
-  amount      Float
-  isCompleted Boolean
-  people      User[]
+  id             String     @id @default(uuid())
+  amount         Float
+  isCompleted    Boolean
+  name           Restaurant @relation(fields: [restaurantName], references: [name])
+  restaurantName String
+  people         User[]
 }
