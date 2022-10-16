@@ -44,8 +44,6 @@ app.post("/registration", cors(), async (req, res) => {
     console.log(e);
     return res.status(500).json({ error: "Internal server error" });
   }
-  // console.log(req.body);
-  // res.status(201).send('created user');
 });
 
 app.post("/login", cors(), async (req, res) => {
