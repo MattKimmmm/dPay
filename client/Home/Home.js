@@ -6,8 +6,7 @@ import {SmallTransactions} from "../Transactions/Transactions.js";
 import { getGeoLocation } from "../Location.js";
 import { LinearGradient } from "expo-linear-gradient";
 import {getNearbyShops } from "../API/Shops.js";
-import Shops from "../Shop/Shops.js"
-
+import Shops from "../Shop/Shops.js";
 export default function Home({
   user,
   setUser,
@@ -100,7 +99,7 @@ export default function Home({
           </View>
           <ScrollView style={styles.shops_container} horizontal={true}>
                 {shops.map((shop) => (
-                  <Shops
+                  <Shops 
                     key={shop.id}
                     shop={shop}
                     setPageID={setPageID}

@@ -3,12 +3,21 @@ const prisma = new PrismaClient()
 
 async function main() {
     console.log(`Start seeding ...`)
-    for (const u of userData) {
-      const user = await prisma.user.create({
-        data: u,
-      })
-      console.log(`Created user with id: ${user.id}`)
-    }
+    const transaction = await prisma.create({
+        data: {
+            amount: 20,
+            isCompleted: false,
+            people: {
+              create: [
+                    {
+                        username: "Gunwoo",
+                        username: "matthew"
+                    }
+                ]
+            }
+        },
+    })
+
     console.log(`Seeding finished.`)
   }
   
