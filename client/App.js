@@ -46,6 +46,7 @@ export default function App() {
           setPageID={setPageID}
           transactions={transactions}
           setTransactions={setTransactions}
+          setCurrentTransaction={setCurrentTransaction}
         />
       );
     case "transaction":
