@@ -14,6 +14,7 @@ const Registration = async (username, password, email, deviceID) => {
             // deviceID: deviceID
         })
     });
+    console.log(response)
     response.then((response) => {
         console.log(response);
     });
