@@ -97,6 +97,8 @@ app.post("/transactionc", cors(), async (req, res) => {
     selectedPeopleId.push({ id: selectedPeople[i].id });
   }
 
+  var selectedPeopleId = selectedPeople.map((item) => {id: item.id});
+
   try {
     const transaction = await prisma.transaction.create({
       data: {
@@ -113,6 +115,7 @@ app.post("/transactionc", cors(), async (req, res) => {
         },
       },
     });
+
 
     console.log(transaction);
     return res.json(transaction);
