@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import styles from "./StyleSheet.js";
 import {Nearme} from "../API/Nearme.js";
 import sampleUsers from "../sampleUsers.js";
-import {DisplayLargeAdd, DisplayLargeRemove} from "../Display/DisplayLarge.js";
+import {DisplayLargeAdd, DisplayLargeRemove, DisplayLarge} from "../Display/DisplayLarge.js";
 
 export default function Pay({
   shop,
@@ -17,7 +17,7 @@ export default function Pay({
 }) {
   const [amount, setAmount] = useState(0);
   const [note, setNote] = useState("");
-  const [peoples, setPeoples] = useState([]);
+  const [peoples, setPeoples] = useState([])
   const [selectedPeople, setSelectedPeople] = useState([user]);
   const goBack = () => {
     setShop(null);
@@ -27,18 +27,20 @@ export default function Pay({
     //create transaction object with amount, isCompleted false, name, restaurantName, people
   };
   useEffect(() => {
-    console.log(Nearme());
+    Nearme().then((users) =>{
+        setPeoples(users);
+    })
+    console.log(selectedPeople);
     }, []);
   const addToSelected = (user) =>{
+    console.log(user);
     setSelectedPeople([...selectedPeople, user]);                               
   }
     const removeFromSelected = (user) =>{
     setSelectedPeople(selectedPeople.filter((selectedUser)=>selectedUser.id!=user.id));
     }
-    //remove selectedPeople from people
-    useEffect(()=>{
-        console.log(peoples)
-    },[])
+    //remove selectedPeople from people using id attribute
+    
 
   return (
     <View style={styles.container}>
@@ -57,19 +59,30 @@ export default function Pay({
         <ScrollView style={styles.peoples_container} horizontal={true}>
           {selectedPeople == undefined
             ? null
-            : selectedPeople.map((user, index) => {
-                return (
-                  <DisplayLargeRemove
-                    key={index}
-                    user={user}
-                    remove={removeFromSelected}
-                  />
-                );
-              })}
+            : selectedPeople.map((thisUser, index) => {
+                if(thisUser.id != user.id){
+                    return (
+                    <DisplayLargeRemove
+                        key={index}
+                        user={thisUser}
+                        remove={removeFromSelected}
+                    />
+                    );
+                }
+                else{
+                    return (
+                    <DisplayLarge
+                        key={index}
+                        user={thisUser}
+                    />
+                    )
+                }
+            }
+              )}
         </ScrollView>
         <ScrollView style={styles.peoples_container} horizontal={true}>
           {peoples
-            .filter((person) => !selectedPeople.includes(person))
+            .filter((person) => !selectedPeople.some( e=> e.id == person.id))
             .map((user, index) => {
               return (
                 <DisplayLargeAdd key={index} user={user} set={addToSelected} />
