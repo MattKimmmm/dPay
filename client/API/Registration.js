@@ -1,4 +1,3 @@
-
 const Registration = async (username, password, email, deviceID) => {
     
     var url = "http://localhost:3000/registration";
@@ -23,4 +22,4 @@ const Registration = async (username, password, email, deviceID) => {
     return response.json();
 }
 
-export  {Registration};
+export {Registration};
