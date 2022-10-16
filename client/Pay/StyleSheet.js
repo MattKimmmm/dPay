@@ -55,6 +55,9 @@ const styles = StyleSheet.create({
     },
     dummy:{
         width:200
+    },
+    peoples_container:{
+        
     }
     
 });
