@@ -21,7 +21,7 @@ const getTransactions = async (id) => {
     return data;
 };
 const createTransactions = async (amount, tf, shop, selectedPeople) =>{
-    return "hello"
+    console.log(amount, tf, shop, selectedPeople)
 }
 
 export {getTransactions, createTransactions};

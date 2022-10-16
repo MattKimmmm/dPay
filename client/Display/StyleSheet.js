@@ -4,7 +4,8 @@ import colors from "../ThemeColor.js";
 const styles = StyleSheet.create({
     round:{
         backgroundColor:"grey",
-        height:"80%",
+        height:100,
+        borderRadius:50,
         aspectRatio:1,
         borderRadius:"50%",
         display:"flex",

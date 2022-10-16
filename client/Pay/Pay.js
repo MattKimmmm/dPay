@@ -23,7 +23,6 @@ export default function Pay({
   const [peoples, setPeoples] = useState([])
   const [selectedPeople, setSelectedPeople] = useState([user]);
   const goBack = () => {
-    setShop(null);
     setPageID("home");
   };
   const pay = () => {
