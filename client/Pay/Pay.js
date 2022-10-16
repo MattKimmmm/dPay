@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput, Button, ScrollView } from "react-nat
 import colors from "../ThemeColor.js";
 import { useState, useEffect } from "react";
 import styles from "./StyleSheet.js";
-import Nearme from "../API/Nearme.js";
+import {Nearme} from "../API/Nearme.js";
 import sampleUsers from "../sampleUsers.js";
 import {DisplayLargeAdd, DisplayLargeRemove} from "../Display/DisplayLarge.js";
 
@@ -17,7 +17,7 @@ export default function Pay({
 }) {
   const [amount, setAmount] = useState(0);
   const [note, setNote] = useState("");
-  const [peoples, setPeoples] = useState(Nearme);
+  const [peoples, setPeoples] = useState([]);
   const [selectedPeople, setSelectedPeople] = useState([user]);
   const goBack = () => {
     setShop(null);
@@ -26,6 +26,9 @@ export default function Pay({
   const pay = () => {
     //create transaction object with amount, isCompleted false, name, restaurantName, people
   };
+  useEffect(() => {
+    console.log(Nearme());
+    }, []);
   const addToSelected = (user) =>{
     setSelectedPeople([...selectedPeople, user]);                               
   }
