@@ -92,12 +92,8 @@ app.get("/users", cors(), async (req, res) => {
 
 app.get("/nearme", cors(), async (req, res) => {
   try { 
-    const users = await prisma.user.findMany({
-      where: {
-        username: true,
-      },
-    });
-    
+    const users = await prisma.user.findMany();
+
     return res.json(users);
   } catch (e) {
     console.log(e);
