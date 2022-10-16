@@ -1,6 +1,6 @@
 const sampleUsers = [
   {
-    username: "test",
+    username: "Gunwoo",
     password: "test",
     id: "19",
     balance: 42.54,

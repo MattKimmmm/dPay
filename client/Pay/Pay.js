@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button, ScrollView } from "react-native";
 import colors from "../ThemeColor.js";
 import { useState, useEffect } from "react";
 import styles from "./StyleSheet.js";
@@ -17,7 +17,7 @@ export default function Pay({
 }) {
   const [amount, setAmount] = useState(0);
   const [note, setNote] = useState("");
-  const [peoples, setPeoples] = useState(sampleUsers);
+  const [peoples, setPeoples] = useState(Nearme);
   const [selectedPeople, setSelectedPeople] = useState([user]);
   const goBack = () => {
     setShop(null);
@@ -51,19 +51,30 @@ export default function Pay({
           value={amount}
           placeholder="Amount"
         />
-        <View style={styles.peoples_container}>
-          {selectedPeople ==undefined ? null : selectedPeople.map((user, index) => {
-            return <DisplayLargeRemove key={index} user={user} remove={removeFromSelected}/>;
-          })}
-        </View>
-        <View style={styles.peoples_container}>
-        {
-            peoples.filter((person)=>!selectedPeople.includes(person)).map((user, index) => {
-            return <DisplayLargeAdd key={index} user={user} set={addToSelected}/>;
-        })}
-        </View>
-          <Button title="Pay" onPress={pay} />
-        </View>
+        <ScrollView style={styles.peoples_container} horizontal={true}>
+          {selectedPeople == undefined
+            ? null
+            : selectedPeople.map((user, index) => {
+                return (
+                  <DisplayLargeRemove
+                    key={index}
+                    user={user}
+                    remove={removeFromSelected}
+                  />
+                );
+              })}
+        </ScrollView>
+        <ScrollView style={styles.peoples_container} horizontal={true}>
+          {peoples
+            .filter((person) => !selectedPeople.includes(person))
+            .map((user, index) => {
+              return (
+                <DisplayLargeAdd key={index} user={user} set={addToSelected} />
+              );
+            })}
+        </ScrollView>
+        <Button title="Pay" onPress={pay} />
+      </View>
     </View>
   );
 }
