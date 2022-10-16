@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Switch } from "react-native";
 import Login from "./Login/Login.js";
 import React, { useState, useEffect } from "react";
 import Registration from "./Registration/Registration.js";
@@ -17,9 +17,11 @@ export default function App() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [shop, setShop] = useState(null);
+
   useEffect(() => {
     console.log("hello", user);
   }, [user]);
+
   switch (pageID) {
     case "login":
       return (
