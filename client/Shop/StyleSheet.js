@@ -7,19 +7,21 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
-  },
-  text: {
     backgroundColor: "grey",
-    height: "80%",
     aspectRatio: 1,
-    borderRadius: "50%",
+    borderRadius: 50,
+    height: 100,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     marginRight: 3,
     marginLeft: 3,
-    fontSize: "20px",
+    padding:10
+  },
+  text: {
+    fontSize: "15px",
     color: "white",
+    textAlign: "center",
   },
 });
 

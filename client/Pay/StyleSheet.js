@@ -35,20 +35,10 @@ const styles = StyleSheet.create({
     //no shadow
     shadowColor: "transparent",
     //no outline
-    outline: "none",
-    //no underline
-    textDecorationLine: "none",
-    //no underline
-    textDecorationStyle: "solid",
-    //no underline
-    textDecorationColor: "#000",
-    //no underline
-    textUnderlinePosition: "under",
-    //no underline
-    textShadowColor: "transparent",
     height: 100,
     width: 200,
     textAlign: "center",
+    fontSize:40,
   },
   back: {
     width: 200,

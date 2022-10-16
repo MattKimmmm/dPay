@@ -83,9 +83,6 @@ const styles = StyleSheet.create({
     borderLeftColor: "transparent",
     borderRightColor: "transparent",
     height: 200,
-    backgroundColor:
-      "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 88%, rgba(255,255,255,1) 100%)",
-
     
   },
   empty: {
@@ -103,7 +100,7 @@ const styles = StyleSheet.create({
   shops_container:{
       display:"flex",
       flexDirection:"row",
-      height:500,
+      height:300,
       width:"100%"
     }
 });

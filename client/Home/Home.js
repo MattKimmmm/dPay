@@ -77,7 +77,7 @@ export default function Home({
               )}
             </ScrollView>
           </View>
-          <View style={styles.transaction_container1}>
+          {/* <View style={styles.transaction_container1}>
             <Text style={styles.transaction_prompt}>Transactions</Text>
 
             <ScrollView style={styles.transaction_container2}>
@@ -96,7 +96,7 @@ export default function Home({
                 ))
               )}
             </ScrollView>
-          </View>
+          </View> */}
           <ScrollView style={styles.shops_container} horizontal={true}>
                 {shops.map((shop) => (
                   <Shops 

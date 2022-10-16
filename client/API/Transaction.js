@@ -20,5 +20,8 @@ const getTransactions = async (id) => {
     console.log(data);
     return data;
 };
+const createTransactions = async (amount, tf, shop, selectedPeople) =>{
+    return "hello"
+}
 
-export {getTransactions}
+export {getTransactions, createTransactions};

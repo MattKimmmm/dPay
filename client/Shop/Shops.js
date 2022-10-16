@@ -1,5 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  TouchableHighlight,
+  TouchableOpacity,
+} from "react-native";
 import styles from "./StyleSheet.js";
 
 export default function Shops({ shop, setPageID ,setShop}) {
@@ -8,8 +16,8 @@ export default function Shops({ shop, setPageID ,setShop}) {
         setPageID("pay");
     }
   return (
-    <View style={styles.container} onClick={goShop}>
+    <TouchableHighlight style={styles.container} onPress={goShop}>
       <Text style={styles.text}>{shop.name}</Text>
-    </View>
+    </TouchableHighlight>
   );
 }
