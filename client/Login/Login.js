@@ -28,7 +28,7 @@ const Login = ({
           style={styles.input}
           onChangeText={setUsername}
           value={username}
-          placeholder="username"
+          placeholder="username"  
         ></TextInput>
         <TextInput
           style={styles.input}

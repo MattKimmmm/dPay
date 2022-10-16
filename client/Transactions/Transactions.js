@@ -16,16 +16,16 @@ export function SmallTransactions({ transaction, setPageID, setCurrentTransactio
 
     <View onclick={() => transactionClick()}
       style={
-        transaction.completed
+        transaction.isCompleted
           ? styles.small.Transaction
           : styles.small.Transaction_uncompleted
       }
       
     >
-      <Text style={styles.small.name}>{transaction.name}</Text>
+      <Text style={styles.small.name}>{transaction.id}</Text>
       <Text style={styles.small.TransactionText}>${transaction.amount}</Text>
       <View style={styles.small.TransactionPeoples}>
-        {transaction.peoples.map((user, index) => {
+        {transaction.people.map((user, index) => {
           return (
             <Display key={index} username={user.username} userID={user.id} />
           );

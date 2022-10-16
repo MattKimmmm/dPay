@@ -29,6 +29,7 @@ const LoginCheck = (username,password, {setUser,setPageID, setTransactions}) =>{
               }
               const transaction=getTransactions(user.id)
               transaction.then((transactionValue) =>{
+                console.log('hello')
                 console.log("try",transactionValue)
                 setTransactions(transactionValue)
               })

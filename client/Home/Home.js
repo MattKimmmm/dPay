@@ -37,6 +37,9 @@ export default function Home({
       );
     });
   }
+  useEffect(() => {
+    console.log("hello", transactions);
+  }, [transactions]);
 
   if (user != null) {
     return (

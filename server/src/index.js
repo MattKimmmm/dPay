@@ -70,12 +70,15 @@ app.post("/login", cors(), async (req, res) => {
 
 app.post("/transaction", cors(), async (req, res) => {
   const { id } = req.body;
+  console.log('index.js'+id);
   try {
     const transaction = await prisma.transaction.findMany({
       where: { 
-        people : { id : id }
+        id: id
       },
     });
+    
+    console.log(transaction);
     return res.json(transaction);
   } catch (e) {
     console.log(e);
