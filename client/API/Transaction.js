@@ -1,5 +1,3 @@
-import sampleTransaction from "../SampleTransaction.js";
-
 const getTransactions = async (id) => {
     
     var url = "http://localhost:3000/transaction";
