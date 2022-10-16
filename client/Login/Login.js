@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import { StyleSheet, Text, View, TextInput, Button, Switch } from "react-native";
 import styles from "./StyleSheet";
 import { LoginCheck } from "./LoginCheck.js";
-import {theme, darkTheme} from './Display/StyleSheet.js';
+import {theme, darkTheme} from '../Display/StyleSheet.js';
 
 const ThemeContext = React.createContext({});
 
