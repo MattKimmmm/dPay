@@ -25,6 +25,7 @@ app.use(
     },
   })
 );
+
 app.post("/registration", cors(), async (req, res) => {
   const { username, password, email, deviceId } = req.body;
 
@@ -38,6 +39,25 @@ app.post("/registration", cors(), async (req, res) => {
         // deviceID: deviceID
       },
     });
+    return res.json(user);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.post("/login", cors(), async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        username: username,
+        password: password,
+      },
+    });
+    if (user == null) {
+      return res.status(500).json({ error: "Invalid username or password" });
+    }
     return res.json(user);
   } catch (e) {
     console.log(e);

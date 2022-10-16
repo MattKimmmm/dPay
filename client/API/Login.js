@@ -1,6 +1,7 @@
 const Login = async (username, password) => {
 
   var url = "http://localhost:3000/login";
+  
   var response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -12,12 +13,14 @@ const Login = async (username, password) => {
       password: password,
     })
   });
-  response.then((response) => {
-    console.log(response);
-  });
-  console.log(response)
 
-  return response.json();
+  var data = await response.json();
+  if(data.error!=undefined){
+    alert(data.error);
+    return null
+  }
+  console.log(data);
+  return response;
 }
 
 export {Login};
