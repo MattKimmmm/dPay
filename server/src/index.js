@@ -51,10 +51,13 @@ app.post("/login", cors(), async (req, res) => {
   try {
     const user = await prisma.user.findUnique({
       where: {
-        username: username,
-        password: password,
+        username_password: {
+          username: username,
+          password: password,
+        },
       },
     });
+    
     if (user == null) {
       return res.status(500).json({ error: "Invalid username or password" });
     }

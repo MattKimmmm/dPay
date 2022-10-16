@@ -17,6 +17,8 @@ model User {
   friends       Friend?
   shop          Restaurant[]
   transaction   Transaction[]
+
+  @@unique([username, password])
 }
 
 model Friend {
