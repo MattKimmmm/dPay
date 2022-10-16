@@ -21,6 +21,7 @@ export default function Home({
   setPageID,
   transactions,
   setTransactions,
+  setCurrentTransaction,
 }) {
   const [shops, setShops] = useState([]);
   const [location, setLocation] = useState(null);
@@ -97,6 +98,7 @@ export default function Home({
                     key={transaction.id}
                     transaction={transaction}
                     setPageID={setPageID}
+                    setCurrentTransaction={setCurrentTransaction}
                   ></SmallTransactions>
                 ))
               )}

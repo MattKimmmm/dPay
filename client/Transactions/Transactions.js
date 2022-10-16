@@ -4,15 +4,23 @@ import styles from "./StyleSheet.js";
 import { getUsers } from "../API/User.js";
 import Display from "../Display/Display.js";
 
-export function SmallTransactions({ transaction, setPageID }) {
+export function SmallTransactions({ transaction, setPageID, setCurrentTransaction }) {
   // const[user,setUser] = React.useState(transactions.user);
+
+  const transactionClick = () => {
+    setCurrentTransaction(transaction);
+    setPageID("transaction");
+  };
+
   return (
-    <View
+
+    <View onclick={() => transactionClick()}
       style={
         transaction.completed
           ? styles.small.Transaction
           : styles.small.Transaction_uncompleted
       }
+      
     >
       <Text style={styles.small.name}>{transaction.name}</Text>
       <Text style={styles.small.TransactionText}>${transaction.amount}</Text>
