@@ -56,7 +56,7 @@ export default function Pay({
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => setAmount(parseFloat(text.replace(/[^0-9.]/g, "")))}
+          onChangeText={(text) => setAmount(text.replace(/[^0-9.]/g, ""))}
           value={"$"+amount}
           placeholder="Amount"
         />
