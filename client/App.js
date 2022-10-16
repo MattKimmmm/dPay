@@ -10,7 +10,7 @@ export default function App() {
   //create a state to store user id
   const [user, setUser] = useState(null);
   const [transactions, setTransactions] = useState([]);
-  const [currentTransaction, setCurrentTransaction] = useState(null);
+  const [currentTransaction, setCurrentTransaction] = useState([]);
   const [pageID, setPageID] = useState("login");
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");

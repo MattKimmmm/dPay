@@ -30,7 +30,7 @@ const LoginCheck = (username,password, {setUser,setPageID, setTransactions}) =>{
               const transaction=getTransactions(user.id)
               transaction.then((transactionValue) =>{
                 console.log("try",transactionValue)
-                // setTransactions(transactionValue)
+                setTransactions(transactionValue)
               })
               alert("Login Successful");
               setUser(user);

@@ -4,7 +4,7 @@ import styles from "./StyleSheet.js";
 import { getUsers } from "../API/User.js";
 import Display from "../Display/Display.js";
 
-export function SmallTransaction({ transaction, setPageID }) {
+export function SmallTransactions({ transaction, setPageID }) {
   // const[user,setUser] = React.useState(transactions.user);
   return (
     <View
