@@ -68,6 +68,21 @@ app.post("/login", cors(), async (req, res) => {
   }
 });
 
+app.post("/transaction", cors(), async (req, res) => {
+  const { id } = req.body;
+  try {
+    const transaction = await prisma.transaction.findMany({
+      where: { 
+        people : { id : id }
+      },
+    });
+    return res.json(transaction);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 app.get("/users", cors(), async (req, res) => {
   res.json("hello");
 });
