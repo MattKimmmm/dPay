@@ -51,12 +51,15 @@ const styles = StyleSheet.create({
 
   balance_container: {
     display: "flex",
+    flexDirection: "row",
     height: "30%",
     alignItems: "center",
     justifyContent: "center",
+
   },
   balance: {
     fontSize: 50,
+    width:"fit-content",
   },
   transaction_container1: {
     marginTop: 20,
@@ -97,12 +100,12 @@ const styles = StyleSheet.create({
       color: "grey",
     },
   },
-  shops:{
-    container:{
+  shops_container:{
       display:"flex",
       flexDirection:"row",
+      height:500,
+      width:"100%"
     }
-  }
 });
 
 export default styles;
