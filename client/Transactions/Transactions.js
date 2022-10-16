@@ -25,7 +25,7 @@ export function SmallTransactions({
           : styles.small.Transaction_uncompleted
       }
     >
-      <Text style={styles.small.name}>{transaction.id}</Text>
+      <Text style={styles.small.name}>{transaction}</Text>
       <Text style={styles.small.TransactionText}>${transaction.amount}</Text>
       <View style={styles.small.TransactionPeoples}>
         {transaction.people ==undefined ? null :
