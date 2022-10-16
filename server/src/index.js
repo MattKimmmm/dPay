@@ -68,6 +68,7 @@ app.post("/login", cors(), async (req, res) => {
   }
 });
 
+// getTransactions
 app.post("/transactiong", cors(), async (req, res) => {
   const { id } = req.body;
   console.log('index.js'+id);
@@ -86,6 +87,7 @@ app.post("/transactiong", cors(), async (req, res) => {
   }
 });
 
+// create a new transaction
 app.post("/transactionc", cors(), async (req, res) => {
   const { amount, tf, shop, selectedPeople } = req.body;
   try {
@@ -93,13 +95,19 @@ app.post("/transactionc", cors(), async (req, res) => {
       data: {
         amount: amount,
         remainder: amount,
-        completed: tf,
-        restaurant: shop
+        isCompleted: tf,
+        name: shop,
+        people: selectedPeople
       },
-      include: {
-        people: {
-          select: {
-            
+    });
+
+    console.log(transaction);
+    return res.json(transaction);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 
 
@@ -123,3 +131,4 @@ app.get("/nearme", cors(), async (req, res) => {
 const server = app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");
 });
+
