@@ -1,12 +1,19 @@
-import React,{useEffect, useState} from "react";
-import { StyleSheet, Text, View, TextInput, Button,ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  ScrollView,
+} from "react-native";
 import styles from "./HomeStyleSheet.js";
 import Svg, { Path, Use, Image } from "react-native-svg";
-import {SmallTransactions} from "../Transactions/Transactions.js";
+import { SmallTransactions } from "../Transactions/Transactions.js";
 import { getGeoLocation } from "../Location.js";
 import { LinearGradient } from "expo-linear-gradient";
-import {getNearbyShops } from "../API/Shops.js";
-import Shops from "../Shop/Shops.js"
+import { getNearbyShops } from "../API/Shops.js";
+import Shops from "../Shop/Shops.js";
 
 export default function Home({
   user,
@@ -16,21 +23,19 @@ export default function Home({
   setTransactions,
 }) {
   const [shops, setShops] = useState([]);
-  const [location,setLocation] = useState(null);
-  if(location==null){
-      const location_promise = getGeoLocation();
+  const [location, setLocation] = useState(null);
+  if (location == null) {
+    const location_promise = getGeoLocation();
     location_promise.then((location) => {
       setLocation(location);
-      getNearbyShops(location.coords.latitude,location.coords.longitude).then((shops) => 
-      {
-        console.log(shops)
-        setShops(shops);
-      });
-    })
+      getNearbyShops(location.coords.latitude, location.coords.longitude).then(
+        (shops) => {
+          console.log(shops);
+          setShops(shops);
+        }
+      );
+    });
   }
-
-
- 
 
   if (user != null) {
     return (
@@ -54,7 +59,10 @@ export default function Home({
         </View>
         <View style={styles.body}>
           <View style={styles.balance_container}>
-            <Text style={styles.balance}>${user.balance.toFixed(2)}</Text>
+            <TextInput
+              style={styles.balance}
+              value={"$" + user.balance.toFixed(2)}
+            ></TextInput>
           </View>
           <View style={styles.transaction_container1}>
             <Text style={styles.transaction_prompt}>Transactions</Text>
