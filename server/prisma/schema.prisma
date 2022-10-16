@@ -43,7 +43,7 @@ model Restaurant {
 model Transaction {
   id             String     @id @default(uuid())
   amount         Float
-  remainder      Float
+  remainder      Float      @default(0)
   isCompleted    Boolean
   name           Restaurant @relation(fields: [restaurantName], references: [name])
   restaurantName String

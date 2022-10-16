@@ -68,7 +68,7 @@ app.post("/login", cors(), async (req, res) => {
   }
 });
 
-app.post("/transaction", cors(), async (req, res) => {
+app.post("/transactiong", cors(), async (req, res) => {
   const { id } = req.body;
   console.log('index.js'+id);
   try {
@@ -85,6 +85,23 @@ app.post("/transaction", cors(), async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 });
+
+app.post("/transactionc", cors(), async (req, res) => {
+  const { amount, tf, shop, selectedPeople } = req.body;
+  try {
+    const transaction = await prisma.transaction.create({
+      data: {
+        amount: amount,
+        remainder: amount,
+        completed: tf,
+        restaurant: shop
+      },
+      include: {
+        people: {
+          select: {
+            
+
+
 
 // amount, tf, shop, selectedPeople
 
