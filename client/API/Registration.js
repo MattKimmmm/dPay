@@ -7,7 +7,7 @@ const Registration = async (username, password, email, deviceId) => {
   var response = await fetch(url, {
     method: "POST",
     headers: {
-      Accept: "application/json",
+      "Accept": "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
