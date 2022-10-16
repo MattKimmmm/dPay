@@ -92,6 +92,8 @@ app.post("/transactionc", cors(), async (req, res) => {
   var { amount, tf, shop, selectedPeople } = req.body;
   amount = parseFloat(amount);
 
+  var selectedPeopleId = selectedPeople.map((item) => {id: item.id});
+
   try {
     const transaction = await prisma.transaction.create({
       data: {
@@ -99,9 +101,19 @@ app.post("/transactionc", cors(), async (req, res) => {
         remainder: amount,
         isCompleted: tf,
         restaurantName:shop.name,
-        people: selectedPeople
-      },
+
+        // select users from selectedPeople array and put them in the people field of the transaction
+        people: selectedPeopleId,
+
+        people: {
+          select : {
+            user : {
+              id: selectedPeopleId
+            }
+          }}
+        },
     });
+
 
     console.log(transaction);
     return res.json(transaction);
