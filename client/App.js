@@ -66,6 +66,7 @@ export default function App() {
         return (
           <Pay
             shop={shop}
+            setShop={setShop}
             setPageID={setPageID}
             setTransactions={setTransactions}
             transactions={transactions}
