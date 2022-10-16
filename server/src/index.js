@@ -90,6 +90,21 @@ app.get("/users", cors(), async (req, res) => {
   res.json("hello");
 });
 
+app.get("/nearme", cors(), async (req, res) => {
+  try { 
+    const users = await prisma.user.findMany({
+      where: {
+        username: true,
+      },
+    });
+    
+    return res.json(users);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 const server = app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");
 });

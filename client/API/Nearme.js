@@ -1,5 +1,33 @@
-import sampleUsers from "../sampleUser.js"
+const Nearme = async () => {
+    var url = "http://localhost:3000/nearme";
+    
+    var response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+    });
 
-export default async function Nearme(location){
-    return sampleUsers
+    var data = await response.json();
+    if(data.error!=undefined){
+        alert(data.error);
+        return null
+    }
+    console.log(data);
+    return data;
+    
 }
+
+export {Nearme};
+
+
+
+
+
+
+
+
+
+
+
