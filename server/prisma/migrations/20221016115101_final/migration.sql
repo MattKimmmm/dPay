@@ -28,6 +28,8 @@ CREATE TABLE `Restaurant` (
     `location` VARCHAR(191) NOT NULL,
     `ownerId` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `Restaurant_name_key`(`name`),
+    UNIQUE INDEX `Restaurant_location_key`(`location`),
     INDEX `Restaurant_ownerId_fkey`(`ownerId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -36,7 +38,20 @@ CREATE TABLE `Restaurant` (
 CREATE TABLE `Transaction` (
     `id` VARCHAR(191) NOT NULL,
     `amount` DOUBLE NOT NULL,
+    `remainder` DOUBLE NOT NULL,
     `isCompleted` BOOLEAN NOT NULL,
+    `restaurantName` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Payment` (
+    `id` VARCHAR(191) NOT NULL,
+    `amount` DOUBLE NOT NULL,
+    `isCompleted` BOOLEAN NOT NULL,
+    `userId` VARCHAR(191) NOT NULL,
+    `restaurantId` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -55,6 +70,15 @@ ALTER TABLE `Friend` ADD CONSTRAINT `Friend_userId_fkey` FOREIGN KEY (`userId`) 
 
 -- AddForeignKey
 ALTER TABLE `Restaurant` ADD CONSTRAINT `Restaurant_ownerId_fkey` FOREIGN KEY (`ownerId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Transaction` ADD CONSTRAINT `Transaction_restaurantName_fkey` FOREIGN KEY (`restaurantName`) REFERENCES `Restaurant`(`name`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Payment` ADD CONSTRAINT `Payment_restaurantId_fkey` FOREIGN KEY (`restaurantId`) REFERENCES `Restaurant`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Payment` ADD CONSTRAINT `Payment_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `_TransactionToUser` ADD CONSTRAINT `_TransactionToUser_A_fkey` FOREIGN KEY (`A`) REFERENCES `Transaction`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

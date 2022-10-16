@@ -86,6 +86,8 @@ app.post("/transaction", cors(), async (req, res) => {
   }
 });
 
+// amount, tf, shop, selectedPeople
+
 app.get("/users", cors(), async (req, res) => {
   res.json("hello");
 });
