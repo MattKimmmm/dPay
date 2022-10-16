@@ -97,6 +97,7 @@ app.post("/transactionc", cors(), async (req, res) => {
         remainder: amount,
         isCompleted: tf,
         name: shop,
+        restaurantName:shop.name,
         people: selectedPeople
       },
     });
