@@ -1,11 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button, ScrollView } from "react-native";
 import colors from "../ThemeColor.js";
 import { useState, useEffect } from "react";
 import styles from "./StyleSheet.js";
-import Nearme from "../API/Nearme.js";
+import {Nearme} from "../API/Nearme.js";
 import sampleUsers from "../sampleUsers.js";
-import {DisplayLargeAdd, DisplayLargeRemove} from "../Display/DisplayLarge.js";
+import {DisplayLargeAdd, DisplayLargeRemove, DisplayLarge} from "../Display/DisplayLarge.js";
 
 export default function Pay({
   shop,
@@ -17,7 +17,7 @@ export default function Pay({
 }) {
   const [amount, setAmount] = useState(0);
   const [note, setNote] = useState("");
-  const [peoples, setPeoples] = useState(sampleUsers);
+  const [peoples, setPeoples] = useState([])
   const [selectedPeople, setSelectedPeople] = useState([user]);
   const goBack = () => {
     setShop(null);
@@ -26,16 +26,21 @@ export default function Pay({
   const pay = () => {
     //create transaction object with amount, isCompleted false, name, restaurantName, people
   };
+  useEffect(() => {
+    Nearme().then((users) =>{
+        setPeoples(users);
+    })
+    console.log(selectedPeople);
+    }, []);
   const addToSelected = (user) =>{
+    console.log(user);
     setSelectedPeople([...selectedPeople, user]);                               
   }
     const removeFromSelected = (user) =>{
     setSelectedPeople(selectedPeople.filter((selectedUser)=>selectedUser.id!=user.id));
     }
-    //remove selectedPeople from people
-    useEffect(()=>{
-        console.log(peoples)
-    },[])
+    //remove selectedPeople from people using id attribute
+    
 
   return (
     <View style={styles.container}>
@@ -51,19 +56,41 @@ export default function Pay({
           value={amount}
           placeholder="Amount"
         />
-        <View style={styles.peoples_container}>
-          {selectedPeople ==undefined ? null : selectedPeople.map((user, index) => {
-            return <DisplayLargeRemove key={index} user={user} remove={removeFromSelected}/>;
-          })}
-        </View>
-        <View style={styles.peoples_container}>
-        {
-            peoples.filter((person)=>!selectedPeople.includes(person)).map((user, index) => {
-            return <DisplayLargeAdd key={index} user={user} set={addToSelected}/>;
-        })}
-        </View>
-          <Button title="Pay" onPress={pay} />
-        </View>
+        <ScrollView style={styles.peoples_container} horizontal={true}>
+          {selectedPeople == undefined
+            ? null
+            : selectedPeople.map((thisUser, index) => {
+                if(thisUser.id != user.id){
+                    return (
+                    <DisplayLargeRemove
+                        key={index}
+                        user={thisUser}
+                        remove={removeFromSelected}
+                    />
+                    );
+                }
+                else{
+                    return (
+                    <DisplayLarge
+                        key={index}
+                        user={thisUser}
+                    />
+                    )
+                }
+            }
+              )}
+        </ScrollView>
+        <ScrollView style={styles.peoples_container} horizontal={true}>
+          {peoples
+            .filter((person) => !selectedPeople.some( e=> e.id == person.id))
+            .map((user, index) => {
+              return (
+                <DisplayLargeAdd key={index} user={user} set={addToSelected} />
+              );
+            })}
+        </ScrollView>
+        <Button title="Pay" onPress={pay} />
+      </View>
     </View>
   );
 }
