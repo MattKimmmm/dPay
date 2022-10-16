@@ -90,6 +90,7 @@ app.post("/transactiong", cors(), async (req, res) => {
 // create a new transaction
 app.post("/transactionc", cors(), async (req, res) => {
   const { amount, tf, shop, selectedPeople } = req.body;
+  const amount_i
   try {
     const transaction = await prisma.transaction.create({
       data: {
