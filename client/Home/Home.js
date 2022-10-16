@@ -15,6 +15,7 @@ export default function Home({
   transactions,
   setTransactions,
   setCurrentTransaction,
+  setShop,
 }) {
   const [shops, setShops] = useState([]);
   const [location,setLocation] = useState(null);
@@ -105,6 +106,7 @@ export default function Home({
                     shop={shop}
                     setPageID={setPageID}
                     setCurrentTransaction={setCurrentTransaction}
+                    setShop={setShop}
                   ></Shops>
                 ))}
           </ScrollView>
