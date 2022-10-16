@@ -2,10 +2,11 @@ import React,{useEffect, useState} from "react";
 import { StyleSheet, Text, View, TextInput, Button,ScrollView } from "react-native";
 import styles from "./HomeStyleSheet.js";
 import Svg, { Path, Use, Image } from "react-native-svg";
-import SmallTransactions from "../Transactions/Transactions.js";
+import {SmallTransactions} from "../Transactions/Transactions.js";
 import { getGeoLocation } from "../Location.js";
 import { LinearGradient } from "expo-linear-gradient";
 import {getNearbyShops } from "../API/Shops.js";
+import Shops from "../Shop/Shops.js"
 
 export default function Home({
   user,
@@ -94,6 +95,14 @@ export default function Home({
             </ScrollView>
           </View>
           <View style={styles.shops.container}>
+                {shops.map((shop) => (
+                  <Shops
+                    key={shop.id}
+                    shop={shop}
+                    setPageID={setPageID}
+                  ></Shops>
+                ))}
+
           </View>
         </View>
       </View>
