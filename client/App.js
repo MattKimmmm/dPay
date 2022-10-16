@@ -15,6 +15,7 @@ export default function App() {
   const [pageID, setPageID] = useState("login");
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [shop, setShop] = useState(null);
   useEffect(() => {
     console.log("hello", user);
   }, [user]);
@@ -48,6 +49,7 @@ export default function App() {
           transactions={transactions}
           setTransactions={setTransactions}
           setCurrentTransaction={setCurrentTransaction}
+          setShop={setShop}
         />
       );
     case "transaction":

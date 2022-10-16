@@ -24,7 +24,6 @@ export default function Home({
       setLocation(location);
       getNearbyShops(location.coords.latitude,location.coords.longitude).then((shops) => 
       {
-        console.log(shops)
         setShops(shops);
       });
     })
