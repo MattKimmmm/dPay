@@ -27,16 +27,21 @@ app.use(
 );
 app.post("/registration", cors(), async (req, res) => {
   const { username, password, email, deviceId } = req.body;
-  const user = await prisma.user.create({
-    data: {
-      username: username,
-      password: password,
-      email: email,
-      deviceId: deviceId,
-      // deviceID: deviceID
-    },
+  try{
+    const user = await prisma.user.create({
+        data: {
+        username: username,
+        password: password,
+        email: email,
+        deviceId: deviceId,
+        // deviceID: deviceID
+        },
   });
-
+} catch (e) {
+    console.log(e);
+    res.status(500).json({ error: "Internal server error" });
+    res.json((null))
+}
   // console.log(req.body);
   // res.status(201).send('created user');
   res.json(user);

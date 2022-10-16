@@ -1,5 +1,9 @@
 const Registration = async (username, password, email, deviceId) => {
   var url = "http://localhost:3000/registration";
+  //generate random string
+  var randomString =
+    Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15);
   var response = await fetch(url, {
     method: "POST",
     headers: {
@@ -10,17 +14,13 @@ const Registration = async (username, password, email, deviceId) => {
       username: username,
       password: password,
       email: email,
-      deviceId: "hello",
+      deviceId: randomString,
       // deviceID: deviceID
     }),
   });
-  console.log(response);
-  response.then((response) => {
-    console.log(response);
-  });
-  console.log(response);
-
-  return response.json();
+  var data = await response.json();
+  console.log(data);
+  return response;
 };
 
 export { Registration };
