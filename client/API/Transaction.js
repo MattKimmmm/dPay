@@ -1,5 +1,7 @@
+import sampleTransactions from '../SampleTransaction.js';
+
 const getTransactions = async (amount, isCompleted, people) => {
-    
+    return sampleTransactions
     var url = "http://localhost:3000/transaction";
 
     var response = await fetch(url, {
