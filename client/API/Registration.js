@@ -21,6 +21,7 @@ const Registration = async (username, password, email, deviceId) => {
   var data = await response.json();
   if(data.error!=undefined){
     alert(data.error);
+    return null
   }
   console.log(data);
   return response;
