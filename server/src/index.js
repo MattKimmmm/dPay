@@ -57,7 +57,7 @@ app.post("/login", cors(), async (req, res) => {
         },
       },
     });
-    
+
     if (user == null) {
       return res.status(500).json({ error: "Invalid username or password" });
     }
@@ -71,14 +71,14 @@ app.post("/login", cors(), async (req, res) => {
 // getTransactions
 app.post("/transactiong", cors(), async (req, res) => {
   const { id } = req.body;
-  console.log('index.js'+id);
+  console.log("index.js" + id);
   try {
     const transaction = await prisma.transaction.findMany({
-      where: { 
-        id: id
+      where: {
+        id: id,
       },
     });
-    
+
     console.log(transaction);
     return res.json(transaction);
   } catch (e) {
@@ -91,6 +91,12 @@ app.post("/transactiong", cors(), async (req, res) => {
 app.post("/transactionc", cors(), async (req, res) => {
   var { amount, tf, shop, selectedPeople } = req.body;
   amount = parseFloat(amount);
+  //filter and return id of selectedPeoples
+  var selectedPeopleId = [];
+  for (var i = 0; i < selectedPeople.length; i++) {
+    selectedPeopleId.push({ id: selectedPeople[i].id });
+  }
+  console.log("hello", selectedPeopleId);
 
   var selectedPeopleId = selectedPeople.map((item) => {id: item.id});
 
@@ -100,18 +106,15 @@ app.post("/transactionc", cors(), async (req, res) => {
         amount: amount,
         remainder: amount,
         isCompleted: tf,
-        restaurantName:shop.name,
-
-        // select users from selectedPeople array and put them in the people field of the transaction
-        people: selectedPeopleId,
-
-        people: {
-          select : {
-            user : {
-              id: selectedPeopleId
-            }
-          }}
+        restaurant: {
+          connect: {
+            id: shop.id,
+          },
         },
+        people: {
+          connect: selectedPeopleId,
+        },
+      },
     });
 
 
@@ -123,8 +126,6 @@ app.post("/transactionc", cors(), async (req, res) => {
   }
 });
 
-
-
 // amount, tf, shop, selectedPeople
 
 app.get("/users", cors(), async (req, res) => {
@@ -132,7 +133,7 @@ app.get("/users", cors(), async (req, res) => {
 });
 
 app.get("/nearme", cors(), async (req, res) => {
-  try { 
+  try {
     const users = await prisma.user.findMany();
 
     return res.json(users);
@@ -141,8 +142,41 @@ app.get("/nearme", cors(), async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 });
+app.get("/shops", cors(), async (req, res) => {
+    
+    try {
+        const shops = await prisma.restaurant.findMany();
+        return res.json(shops);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ error: "Internal server error" });
+    }
+});
+app.post("/shops/create", cors(), async (req, res) => {
+    var { user, ownerId, name, location } = req.body;
+    if(location === "" || location === undefined) {
+        //generate random string for location
+        location = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    }
+    try {
+        const shop = await prisma.restaurant.create({
+            data: {
+                name: name,
+                location: location,
+                owner:{
+                    connect: {
+                        id: ownerId
+                    }
+                },
+            },
+        });
+        return res.json(shop);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ error: "Internal server error" });
+    }
+})
 
 const server = app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");
 });
-

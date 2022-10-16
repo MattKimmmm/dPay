@@ -18,6 +18,7 @@ import {getNearbyShops } from "../API/Shops.js";
 import Shops from "../Shop/Shops.js";
 import {getPayment} from "../API/Payment.js";
 import Notification from "../Notification/Notification.js";
+import CreateRestaurant from "../Restaurant/CreateRestaurant.js";
 export default function Home({
   user,
   setUser,
@@ -118,6 +119,7 @@ export default function Home({
               ></Shops>
             ))}
           </ScrollView>
+
         </View>
       </View>
     );
