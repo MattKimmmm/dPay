@@ -8,3 +8,6 @@ We will further BLE technology to search for nearby devices registered in our da
 go to client and do npm install. Then perform npm start and press w for web, and i for ios.
 While the AWS RDS is running, we are developing express side on the local machine with CORS.
 You would not be able to run the server locally without a .env file specifying the AWS location.
+
+## Devpost submission link
+https://devpost.com/software/dpay
