@@ -97,8 +97,6 @@ app.post("/transactionc", cors(), async (req, res) => {
     selectedPeopleId.push({ id: selectedPeople[i].id });
   }
 
-  var selectedPeopleId = selectedPeople.map((item) => {id: item.id});
-
   try {
     const transaction = await prisma.transaction.create({
       data: {
@@ -115,7 +113,6 @@ app.post("/transactionc", cors(), async (req, res) => {
         },
       },
     });
-
 
     console.log(transaction);
     return res.json(transaction);
@@ -142,39 +139,40 @@ app.get("/nearme", cors(), async (req, res) => {
   }
 });
 app.get("/shops", cors(), async (req, res) => {
-    
-    try {
-        const shops = await prisma.restaurant.findMany();
-        return res.json(shops);
-    } catch (e) {
-        console.log(e);
-        return res.status(500).json({ error: "Internal server error" });
-    }
+  try {
+    const shops = await prisma.restaurant.findMany();
+    return res.json(shops);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 });
 app.post("/shops/create", cors(), async (req, res) => {
-    var { user, ownerId, name, location } = req.body;
-    if(location === "" || location === undefined) {
-        //generate random string for location
-        location = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    }
-    try {
-        const shop = await prisma.restaurant.create({
-            data: {
-                name: name,
-                location: location,
-                owner:{
-                    connect: {
-                        id: ownerId
-                    }
-                },
-            },
-        });
-        return res.json(shop);
-    } catch (e) {
-        console.log(e);
-        return res.status(500).json({ error: "Internal server error" });
-    }
-})
+  var { user, ownerId, name, location } = req.body;
+  if (location === "" || location === undefined) {
+    //generate random string for location
+    location =
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15);
+  }
+  try {
+    const shop = await prisma.restaurant.create({
+      data: {
+        name: name,
+        location: location,
+        owner: {
+          connect: {
+            id: ownerId,
+          },
+        },
+      },
+    });
+    return res.json(shop);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 const server = app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");

@@ -1,6 +1,6 @@
-import sampleTransactions from '../SampleTransactions.js'
+import sampleTransactions from "./SampleTransaction.js";
 const getTransactions = async (id) => {
-    return sampleTransactions;
+    //return await sampleTransactions
     var urlg = "http://localhost:3000/transactiong";
     console.log("hello world")
 
@@ -25,7 +25,7 @@ const getTransactions = async (id) => {
 const createTransactions = async (amount, tf, shop, selectedPeople) =>{
 
     var urlvc = "http://localhost:3000/transactionc";
-
+    console.log(selectedPeople)
     var response = await fetch(urlvc, {
 
         method: "POST",
