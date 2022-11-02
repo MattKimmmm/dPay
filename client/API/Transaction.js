@@ -1,6 +1,6 @@
 import sampleTransactions from '../SampleTransactions.js'
 const getTransactions = async (id) => {
-    retur
+    return sampleTransactions;
     var urlg = "http://localhost:3000/transactiong";
     console.log("hello world")
 
